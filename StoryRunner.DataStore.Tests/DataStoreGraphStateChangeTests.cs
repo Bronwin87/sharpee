@@ -44,7 +44,7 @@ namespace StoryRunner.DataStore.Tests
             world.AddEventHandler(eventHandler);
 
             // Act
-            world.AddNode("node1", "data1");
+            world.AddNode(new Property("name", "name1"), new Property("type", "type1"));
 
             // Assert
             Assert.AreEqual(1, eventHandler.ReceivedEvents.Count);

@@ -16,16 +16,9 @@ namespace StandardLibrary
             this.world = world;
         }
 
-        public Map DefineRoom(string roomId, string description)
+        public Map CreateRoom(string name, string description, params string[] synonyms)
         {
-            world.AddNode(roomId, description);
-            return this;
-        }
-
-        public Map DefineRoomWithName(string roomId, string name, string description, params string[] synonyms)
-        {
-            DefineRoom(roomId, description);
-            SetNodeName(roomId, name, synonyms);
+            world.AddNode();
             return this;
         }
 

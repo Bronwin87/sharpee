@@ -1,12 +1,17 @@
-﻿namespace DataStore
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DataStore
 {
     public class World
     {
-        public Dictionary<string, Node> Nodes { get; private set; }
-        public Dictionary<string, EdgeType> EdgeTypes { get; private set; }
+        public Dictionary<string, Node> Nodes { get; }
+        public Dictionary<string, EdgeType> EdgeTypes { get; }
 
         private List<IGraphEventHandler> eventHandlers = new List<IGraphEventHandler>();
-
 
         public World()
         {
@@ -24,10 +29,20 @@
             return EdgeTypes[name];
         }
 
-        public void AddNode(string id, object data)
+        public string AddNode(params Property[] properties)
         {
-            Nodes[id] = new Node(id, data);
-            PublishNodeAdded(Nodes[id]);
+            bool checkNameExists = properties.ToList<Property>().Exists(p => p.Name == "name");
+            bool checkTypeExists = properties.ToList<Property>().Exists(p => p.Name == "type");
+
+            if (!checkNameExists || !checkTypeExists)
+                throw new Exception("New nodes require name and type properties.");
+
+            string id = GenerateUniqueNodeId();
+
+            var node = new Node(id, properties.ToList<Property>());
+            Nodes[id] = node;
+            PublishNodeAdded(node);
+            return id;
         }
 
         public void RemoveNode(string id)
@@ -40,20 +55,23 @@
             }
         }
 
-        public void ConnectNodes(string id1, string id2, string edgeType, string reverseEdgeType)
+        public void ConnectNodes(string id1, string id2, string edgeType, string reverseEdgeType, params Property[]? properties)
         {
-            Edge edge1 = new Edge(id1, id2, edgeType);
+            List<Property> propertyList = new List<Property>();
+            if (properties != null)
+            {
+                propertyList = properties.ToList<Property>();
+            }
+
+            Edge edge1 = new Edge(id1, id2, edgeType, propertyList);
             Nodes[id1].Edges.Add(edge1);
             PublishEdgeAdded(edge1);
 
             if (reverseEdgeType != null)
             {
-                Edge edge2 = new Edge(id2, id1, reverseEdgeType);
+                Edge edge2 = new Edge(id2, id1, reverseEdgeType, propertyList);
                 Nodes[id2].Edges.Add(edge2);
                 PublishEdgeAdded(edge2);
-            } else
-            {
-                throw new Exception("All connected nodes must be bidirectional.");
             }
         }
 
@@ -156,6 +174,22 @@
             {
                 handler.HandlePropertyChanged(nodeOrEdgeId, property);
             }
+        }
+
+        private string GenerateUniqueNodeId()
+        {
+            const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+            var random = new Random();
+
+            string id;
+            do
+            {
+                id = new string(Enumerable.Repeat(chars, 6)
+                    .Select(s => s[random.Next(s.Length)])
+                    .ToArray());
+            } while (Nodes.ContainsKey(id));
+
+            return id;
         }
     }
 }

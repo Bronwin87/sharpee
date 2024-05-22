@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DataStore
+﻿namespace DataStore
 {
     public class Edge
     {
@@ -13,12 +7,20 @@ namespace DataStore
         public string EdgeType { get; private set; }
         public List<Property> Properties { get; private set; }
 
-        public Edge(string id1, string id2, string edgeType)
+        public Edge(string id1, string id2, string edgeType, List<Property>? properties)
         {
             Id1 = id1;
             Id2 = id2;
             EdgeType = edgeType;
-            Properties = new List<Property>();
+
+            if (properties != null)
+            {
+                this.Properties = properties.ToList<Property>();
+            }
+            else
+            {
+                Properties = new List<Property>();
+            }
         }
     }
 

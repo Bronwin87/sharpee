@@ -12,26 +12,19 @@ namespace StandardLibrary
 {
     public class Story
     {
+        private TitleCard titleCard;
         private World world;
         private Map map;
         private string playerCharacterId;
         private ITextService textService;
 
-        public string Title { get; set; }
-        public string[] Authors { get; set; }
-        public string Publisher { get; set; }
-        public int MajorVersion { get; set; }
-        public int MinorVersion { get; set; }
-        public int PatchVersion { get; set; }
-        public string IFID { get; set; }
-        public DateTime DateCompiled { get; }
-
-        public Story(World world, Map map, ITextService textService)
+        public Story(TitleCard titleCard, World world, Map map, ITextService textService)
         {
             this.world = world;
             this.map = map;
             this.textService = textService;
-            DateCompiled = GetAssemblyBuildDate();
+            this.titleCard = titleCard;
+            this.playerCharacterId = ""; // default for now
         }
 
         /// <summary>
@@ -44,19 +37,9 @@ namespace StandardLibrary
             EmitPrologue(prologue);
         }
 
-        public Story AddTitleCard(  string title, string[] authors, string publisher,
-                                    int majorVersion, int minorVersion, int patchVersion,
-                                    string IFID)
+        private void TurnLoop()
         {
-            this.Title = title;
-            this.Authors = authors;
-            this.Publisher = publisher;
-            this.MajorVersion = MajorVersion;
-            this.MinorVersion = minorVersion;
-            this.PatchVersion = patchVersion;
-            this.IFID = IFID;
 
-            return this;
         }
 
         public Story AddThing(string locationId, string slashSeparatedName, string description, params (string name, object value)[] properties)
@@ -191,34 +174,16 @@ namespace StandardLibrary
             return null;
         }
 
-        private DateTime GetAssemblyBuildDate()
-        {
-            Assembly assembly = Assembly.GetExecutingAssembly();
-            DateTime buildDate = default;
-
-            if (assembly.Location != null)
-            {
-                buildDate = File.GetLastWriteTime(assembly.Location);
-            }
-            else
-            {
-                // Fallback to the current date and time if the assembly location is not available
-                buildDate = DateTime.Now;
-            }
-
-            return buildDate;
-        }
-
         private void EmitStoryMetadata()
         {
             var metadata = new
             {
-                Title,
-                Authors,
-                Publisher,
-                Version = $"{MajorVersion}.{MinorVersion}.{PatchVersion}",
-                IFID,
-                DateCompiled
+                titleCard.Title,
+                titleCard.Authors,
+                titleCard.Publisher,
+                Version = $"{titleCard.MajorVersion}.{titleCard.MinorVersion}.{titleCard.PatchVersion}",
+                titleCard.IFID,
+                titleCard.DateCompiled
             };
 
             EmitJson(metadata);
