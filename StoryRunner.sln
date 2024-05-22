@@ -23,7 +23,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorldModel", "WorldModel\Wo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StoryRunner.DataStore.Tests", "StoryRunner.DataStore.Tests\StoryRunner.DataStore.Tests.csproj", "{19CF6FD2-AA89-44BA-8F9C-61663EE04A5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextService", "TextService\TextService.csproj", "{BDE4D92D-0D19-4BC2-8F03-256EBB935A1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TextService", "TextService\TextService.csproj", "{BDE4D92D-0D19-4BC2-8F03-256EBB935A1F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E7EEBC23-7015-4D45-8E7C-A81EBFDB09A3}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
