@@ -8,7 +8,7 @@ A few months ago, Anthropic released Claude Opus 3, a competitor to ChatGPT4. I 
 
 I have since been seriously honing in on design decisions and completing portions of the platform.
 
-I plan to discuss this on a Ghost blog, which I will identify once I get a sub-domain setup.
+More detailed discussions will occur at https://sharpee.plover.net/.
 
 I also talk in a limited fashion on intfiction.org. It's no secret that the IF community is a herd of cats, especially when it comes to people building new systems. There's very little patience.
 
