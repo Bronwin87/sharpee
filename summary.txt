@@ -1,0 +1,19 @@
+The provided code is for an Interactive Fiction platform that allows an author to create an interactive story game. The platform is built using C# and consists of several namespaces and classes.
+
+1. `WorldModel` namespace:
+	* `Edge` class: Represents a connection between two nodes in the world graph. It has properties for the IDs of the connected nodes, the type of the edge, and a dictionary to store additional properties.
+	* `EdgeType` enum: Defines the different types of edges that can exist between nodes.
+	* `Node` class: Represents an object or location in the world graph. It has properties for the node's ID, data, and a list of edges that connect it to other nodes.
+	* `World` class: Contains a dictionary of nodes and methods to add nodes and connect them. It also has a method to get the reverse edge type of a given edge type.
+2. `Common` namespace:
+	* `IStory` interface: Defines the properties and methods that a story must implement, including a `World`, a `Core`, a `Player`, and an `InitializeWorld()` method.
+3. `GrammarLibrary` namespace:
+	* `Grammar` class: Defines the grammar rules for parsing user input. It allows adding verbs, nouns, adjectives, articles, and prepositions, and stores sentences in a dictionary.
+	* `ActionType`, `TokenType`, and `Token` enum and classes: Used to define the different types of tokens and actions in the grammar.
+4. `StandardLibrary` namespace:
+	* `Core` class: Represents the core functionality of the game, including creating locations, connecting locations, and defining standard and meta actions.
+	* `Direction`, `ILocation`, `IThing`, `IPerson`, `IPlayer`, `Location`, `Person`, `Player`, and `Thing` interfaces and classes: Define the different types of objects and locations in the game world.
+5. `ParserLibrary` namespace:
+	* `Parser` class: Parses user input and executes the corresponding action based on the defined grammar.
+
+The code also includes several other classes and namespaces, such as `TheHouse` and `StoryRunner`, which are used to define a sample story and run the game engine.

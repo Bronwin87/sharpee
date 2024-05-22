@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "StoryRunner": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\david\\ifgames\\MyStory.dll"
+    }
+  }
+}

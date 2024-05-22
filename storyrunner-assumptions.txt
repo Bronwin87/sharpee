@@ -1,0 +1,22 @@
+Assumptions:
+A game object is stored in the world model as a node.
+A game room/location is stored in the world model as a node.
+A game object can be a container, which would allow other objects to be contained by it.
+A game object can be a supporter, which would allow other objects to be located "on top" of it.
+A game object with container capabilities is defined by its node properties.
+A game object with supporter capabilities is defined by its node properties.
+A game object can have a node property of scenery, which cannot be moved or taken.
+A game object can have a node property of moveable.
+A game object can have a node property of takeable.
+
+A game object can be a character.
+
+A character object can exist without a location or usage (node without edges).
+A character object can be the player character (only one is allowed).
+A character object can be a non-playing character (unlimited number).
+
+The player character can be set from any existing character.
+
+Request:
+Starting with the MyStory project and the TheHouse.cs file, we need to add the ability to:
+ - add the assumptions described above.
