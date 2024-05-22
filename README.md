@@ -2,9 +2,9 @@
 
 I started working on this project a few years ago as a learning exercise. I wanted to understand all of the moving parts of a parser-based IF platform. This led to iteratively building parsers, world models, standard libraries, grammar definitions, turn loops, and event handlers.
 
-When ChatGPT-4 was released, I started to take it slightly more seriously, but still slowly because there were limitations of my time, ChatGPT-4's capabilities and prompt-limites (original you got 25 prompts before being put on timeout).
+When ChatGPT-4 was released, I started to take it slightly more seriously, but still slowly because there were limitations of my time, ChatGPT-4's capabilities and prompt-limits (original you got 25 prompts before being put on timeout).
 
-A few months ago, Anthropic released Claude Opus 3, a competitor to ChatGPT4. I tested it out and switched my paid subscription immediately.
+A few months ago, Anthropic released Claude Opus 3, a competitor to ChatGPT4. I tested it out and switched my paid subscription immediately. It also hallucinates at times, but it's super fast and I prefer its response style.
 
 I have since been seriously honing in on design decisions and completing portions of the platform.
 
